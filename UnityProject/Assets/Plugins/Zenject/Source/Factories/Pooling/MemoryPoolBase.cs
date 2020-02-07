@@ -68,7 +68,7 @@ namespace Zenject
                 }
             }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || ZEN_TESTS_OUTSIDE_UNITY
             StaticMemoryPoolRegistry.Add(this);
 #endif
         }
@@ -105,7 +105,7 @@ namespace Zenject
 
         public void Dispose()
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || ZEN_TESTS_OUTSIDE_UNITY
             StaticMemoryPoolRegistry.Remove(this);
 #endif
         }
@@ -117,9 +117,6 @@ namespace Zenject
 
         public void Despawn(TContract item)
         {
-            Assert.That(!_inactiveItems.Contains(item),
-                "Tried to return an item to pool {0} twice", GetType());
-
             _activeCount--;
 
             _inactiveItems.Push(item);

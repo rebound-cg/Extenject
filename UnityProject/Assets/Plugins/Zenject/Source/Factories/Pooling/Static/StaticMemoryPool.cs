@@ -22,7 +22,7 @@ namespace Zenject
         {
             _onDespawnedMethod = onDespawnedMethod;
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || ZEN_TESTS_OUTSIDE_UNITY
             StaticMemoryPoolRegistry.Add(this);
 #endif
         }
@@ -98,7 +98,7 @@ namespace Zenject
 
         public void Dispose()
         {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || ZEN_TESTS_OUTSIDE_UNITY
             StaticMemoryPoolRegistry.Remove(this);
 #endif
         }

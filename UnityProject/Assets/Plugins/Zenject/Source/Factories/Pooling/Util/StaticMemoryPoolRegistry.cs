@@ -4,7 +4,7 @@ using ModestTree;
 
 namespace Zenject
 {
-#if UNITY_EDITOR
+#if UNITY_EDITOR || ZEN_TESTS_OUTSIDE_UNITY
     public static class StaticMemoryPoolRegistry
     {
         public static event Action<IMemoryPool> PoolAdded = delegate {};
